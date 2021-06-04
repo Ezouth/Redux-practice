@@ -4,10 +4,12 @@ const initialState = { counter: 0, showCounter: true }
 
 const counterReducer = (state = initialState, action) => {
     if (action.type === 'increment') {
+        state.counter++;
+        
         return {
-            counter: state.counter + 1,
-            showCounter: state.showCounter,
-        };
+            counter: state.counter,
+            showCounter: state.showCounter
+        }
     }
 
     if (action.type === 'increase') {
