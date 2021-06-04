@@ -1,8 +1,11 @@
 // we can import the variable we stored in index.js
 // import {  INCREMENT } from '../store/index';
 
-// using reduxjstoolkit 
-import { counterActions } from '../store/index';
+// using reduxjstoolkit
+
+// commented out next line because we took out of index and split into its own file
+// import { counterActions } from '../store/index';
+import { counterActions } from '../store/counter';
 import { useSelector, useDispatch } from 'react-redux';
 import classes from './Counter.module.css';
 
