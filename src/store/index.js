@@ -1,7 +1,7 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 
-const initialState = { counter: 0, showCounter: true }
+const initialCounterState = { counter: 0, showCounter: true }
 
 // this is just a demonstration of one way to avoid issues in larger projects
 // this can be exported 
@@ -11,7 +11,7 @@ const initialState = { counter: 0, showCounter: true }
 // This is demonstrating how to use reduxjstoolkit to make using redux easier
 const counterSlice = createSlice({
     name: 'counter',
-    initialState: initialState,
+    initialState: initialCounterState,
     reducers: {
         // can add our methods here
         increment(state) {
@@ -37,11 +37,36 @@ const counterSlice = createSlice({
     }
 });
 
+
+const initialAuthState = {
+    isAuthenticated: false,
+};
+
+const authSlice = createSlice({
+    name: 'authentication',
+    initialState: initialAuthState,
+    reducer: {
+        login(state) {
+            state.isAuthenticated = true;
+        },
+        logout(state) {
+            state.isAuthenticated = false;
+        },
+    }
+});
+
+
+
+
 const store = configureStore({
-    reducer: {counter: counterSlice.reducer}
+    reducer: {counter: counterSlice.reducer,
+    auth: authSlice.reducer,
+    }
 });
 
 export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
+
 export default store;
 
 // this was the way I was doing it before using reduxjstoolkit
