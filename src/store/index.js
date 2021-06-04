@@ -2,8 +2,12 @@ import redux, { createStore} from 'redux';
 
 const initialState = { counter: 0, showCounter: true }
 
+// this is just a demonstration of one way to avoid issues in larger projects
+// this can be exported 
+export const INCREMENT = 'increment';
+
 const counterReducer = (state = initialState, action) => {
-    if (action.type === 'increment') {
+    if (action.type === INCREMENT) {
         state.counter++;
         
         return {
