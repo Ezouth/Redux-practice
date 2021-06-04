@@ -1,67 +1,49 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit';
-
-
-const initialCounterState = { counter: 0, showCounter: true }
-
-// this is just a demonstration of one way to avoid issues in larger projects
+//this is just a demonstration of one way to avoid issues in larger projects
 // this can be exported 
 // export const INCREMENT = 'increment';
-
-
 // This is demonstrating how to use reduxjstoolkit to make using redux easier
+import { createSlice, configureStore } from '@reduxjs/toolkit';
+
+const initialCounterState = { counter: 0, showCounter: true };
+
 const counterSlice = createSlice({
-    name: 'counter',
-    initialState: initialCounterState,
-    reducers: {
-        // can add our methods here
-        increment(state) {
-         // here with REDUXJSTOOLKIT only
-         // we can change the state directly
-         // Should NOT do this in regular redux
-         state.counter++;   
-         // this is allowed because of a package reduxtoolkit contains
-         // it basically checks for code like this where the state may be affected directly
-         // and deals with it for us
-        },
-        decrement(state) {
-            state.counter--;
-        },
-        // we didn't use action in the others so we didn't pass as a parameter
-        increase(state, action) {
-            // note that we use the word payload 
-            state.counter = state.counter + action.payload;
-        },
-        toggleCounter(state) {
-            state.showCounter = !state.showCounter;
-        },
-    }
+  name: 'counter',
+  initialState: initialCounterState,
+  reducers: {
+    increment(state) {
+      state.counter++;
+    },
+    decrement(state) {
+      state.counter--;
+    },
+    increase(state, action) {
+      state.counter = state.counter + action.payload;
+    },
+    toggleCounter(state) {
+      state.showCounter = !state.showCounter;
+    },
+  },
 });
 
-
 const initialAuthState = {
-    isAuthenticated: false,
+  isAuthenticated: false,
 };
 
 const authSlice = createSlice({
-    name: 'authentication',
-    initialState: initialAuthState,
-    reducer: {
-        login(state) {
-            state.isAuthenticated = true;
-        },
-        logout(state) {
-            state.isAuthenticated = false;
-        },
-    }
+  name: 'authentication',
+  initialState: initialAuthState,
+  reducers: {
+    login(state) {
+      state.isAuthenticated = true;
+    },
+    logout(state) {
+      state.isAuthenticated = false;
+    },
+  },
 });
 
-
-
-
 const store = configureStore({
-    reducer: {counter: counterSlice.reducer,
-    auth: authSlice.reducer,
-    }
+  reducer: { counter: counterSlice.reducer, auth: authSlice.reducer },
 });
 
 export const counterActions = counterSlice.actions;
