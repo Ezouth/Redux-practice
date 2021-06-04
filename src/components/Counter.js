@@ -1,8 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
-
 import classes from './Counter.module.css';
 // we can import the variable we stored in index.js
-import {  INCREMENT } from '../store/index';
+// import {  INCREMENT } from '../store/index';
+
+// using reduxjstoolkit 
+import { counterActions } from '../store/index';
 
 
 const Counter = () => {
@@ -10,21 +12,44 @@ const Counter = () => {
   const counter = useSelector((state) => state.counter);
   const show = useSelector((state) => state.showCounter);
 
-  const incrementHandler = () => {
-    dispatch({ type: INCREMENT });
-  };
 
-  const increaseHandler = () => {
-    dispatch({ type: 'increase', amount: 10 });
+// this was how I was doing it before using reduxjstoolkit  
+//  const incrementHandler = () => {
+    // disptach({ type: INCREMENT })
+//    dispatch({ type: 'increment' });
+//  };
+//
+  // const increaseHandler = () => {
+  //   dispatch({ type: 'increase', amount: 10 });
+  // };
+
+  // const decrementHandler = () => {
+  //   dispatch({ type: 'decrement' });
+  // };
+
+  // const toggleCounterHandler = () => {
+  //   dispatch({ type: 'toggle' });
+  // };
+
+
+  //reduxjstoolkit makes it easier to avoid the risk of typos etc
+  const incrementHandler = () => {
+    dispatch(counterActions.increment());
   };
 
   const decrementHandler = () => {
-    dispatch({ type: 'decrement' });
+    dispatch(counterActions.decrement());
   };
 
   const toggleCounterHandler = () => {
-    dispatch({ type: 'toggle' });
+    dispatch(counterActions.toggleCounter());
   };
+
+  // increaseHandler needs a payload so the syntax is slightly different
+  const increaseHandler = () => {
+    dispatch(counteractions.increase(10)); // creates dispatch object { type: SOME_UNIQUE_IDENTIFIER, payload: 10 }
+  };
+
 
   return (
     <main className={classes.counter}>
