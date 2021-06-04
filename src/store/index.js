@@ -23,7 +23,7 @@ const counterSlice = createSlice({
          // it basically checks for code like this where the state may be affected directly
          // and deals with it for us
         },
-        decreement(state) {
+        decrement(state) {
             state.counter--;
         },
         // we didn't use action in the others so we didn't pass as a parameter
@@ -31,7 +31,7 @@ const counterSlice = createSlice({
             // note that we use the word payload 
             state.counter = state.counter + action.payload;
         },
-        toggle(state) {
+        toggleCounter(state) {
             state.showCounter = !state.showCounter;
         },
     }
